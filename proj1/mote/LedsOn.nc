@@ -48,7 +48,7 @@ implementation {
         return;
       }
       counter++;
-      rcm->param_one=counter;
+      rcm->param_one = counter;
       rcm->param_two = red;
       rcm->param_three = redTime;
       rcm->param_four = green;
@@ -67,15 +67,15 @@ implementation {
   }
 
   event void redTimer.fired(){
-    call Leds.led0Off();
+    call Leds.led0Toggle();
   }
 
   event void greenTimer.fired(){
-    call Leds.led1Off();
+    call Leds.led1Toggle();
   }
 
   event void blueTimer.fired(){
-    call Leds.led2Off();
+    call Leds.led2Toggle();
   }
 	
 	event message_t* SerialReceive.receive(message_t* bufPtr, void* payload, uint8_t len)
@@ -85,12 +85,24 @@ implementation {
 			call Leds.led0On();
       call redTimer.startOneShot(rcm->param_two * 1024);
 		}
+    else if(rcm->param_one == 2){
+      call Leds.led0Off();
+      call redTimer.startOneShot(rcm->param_two * 1024);
+    }
     if(rcm->param_three == 1) {
       call Leds.led1On();
       call greenTimer.startOneShot(rcm->param_four * 1024);
     }
+    else if(rcm->param_three == 2){
+      call Leds.led0Off();
+      call greenTimer.startOneShot(rcm->param_four * 1024);
+    }
     if(rcm->param_five == 1) {
       call Leds.led2On();
+      call blueTimer.startOneShot(rcm->param_six * 1024);
+    }
+    else if(rcm->param_five == 2){
+      call Leds.led0Off();
       call blueTimer.startOneShot(rcm->param_six * 1024);
     }
     sendMessage(rcm->param_one, rcm->param_two, rcm->param_three, rcm->param_four, rcm->param_five, rcm->param_six);

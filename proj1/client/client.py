@@ -26,7 +26,9 @@ def main(*args):
         row = 2
       if args[i*3 + 4] == "On":
         command[row][0] = 1
-        command[row][1] = string.atoi(args[i*3 + 5])
+      else:
+        command[row][0] = 2
+      command[row][1] = string.atoi(args[i*3 + 5])
   t.send(command[0][0], command[0][1], command[1][0], command[1][1], command[2][0], command[2][1], 0, 0, 0, 0)
 
 class serial():
