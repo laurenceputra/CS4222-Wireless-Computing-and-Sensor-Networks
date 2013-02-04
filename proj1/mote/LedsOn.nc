@@ -94,7 +94,7 @@ implementation {
       call greenTimer.startOneShot(rcm->param_four * 1024);
     }
     else if(rcm->param_three == 2){
-      call Leds.led0Off();
+      call Leds.led1Off();
       call greenTimer.startOneShot(rcm->param_four * 1024);
     }
     if(rcm->param_five == 1) {
@@ -102,7 +102,7 @@ implementation {
       call blueTimer.startOneShot(rcm->param_six * 1024);
     }
     else if(rcm->param_five == 2){
-      call Leds.led0Off();
+      call Leds.led2Off();
       call blueTimer.startOneShot(rcm->param_six * 1024);
     }
     sendMessage(rcm->param_one, rcm->param_two, rcm->param_three, rcm->param_four, rcm->param_five, rcm->param_six);

@@ -70,10 +70,16 @@ class serial():
     print "Packet No Received: ", param_1
     if param_2 == 1:
       print "Red LED lights up for", param_3, "seconds"
+    elif param_2 == 2:
+      print "Red LED turns off for", param_3, "seconds"
     if param_4 == 1:
       print "Green LED lights up for", param_5, "seconds"
+    elif param_4 == 2:
+      print "Green LED turns off for", param_5, "seconds"
     if param_6 == 1:
       print "Blue LED lights up for", param_7, "seconds"
+    elif param_6 == 2:
+      print "Blue LED turns off for", param_7, "seconds"
 
 if __name__=='__main__':
  main(*sys.argv)
