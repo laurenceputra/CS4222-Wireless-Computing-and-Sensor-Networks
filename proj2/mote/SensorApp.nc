@@ -16,7 +16,7 @@ implementation {
   Sensor.AMControl -> Serial;
   Sensor.Packet -> Serial;
   Sensor.Timer -> Timer;
-  Sensor.Read[0] -> TempAndHumid.Temperature;
-  Sensor.Read[1] -> TempAndHumid.Humidity;
-  Sensor.Read[2] -> PhotoTsr;
+  Sensor.Read[unique(UQ_SAMPLER)] -> TempAndHumid.Temperature;
+  Sensor.Read[unique(UQ_SAMPLER)] -> TempAndHumid.Humidity;
+  Sensor.Read[unique(UQ_SAMPLER)] -> PhotoTsr;
 }

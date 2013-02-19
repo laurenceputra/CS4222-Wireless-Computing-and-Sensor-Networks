@@ -26,7 +26,7 @@ implementation {
 
   event void AMControl.startDone(error_t err) {
     if (err == SUCCESS) {
-      //do nothing
+      call Timer.startOneShot(SAMPLE_INTERVAL);
     }
     else {
       call AMControl.start();
@@ -56,17 +56,17 @@ implementation {
         locked = TRUE;
       }
     }
+    call Timer.startOneShot(SAMPLE_INTERVAL);
   }
 
   void sample_sensors(){
     if(sensor_no < SENSORS_NO){
-      if(call Read.read[sensor_no]() != SUCCESS){
+      if(call Read.read[sensor_no]()){
         call Timer.startOneShot(SAMPLE_INTERVAL);
       }
     }
     else{
       sendMessage();
-      call Timer.startOneShot(SAMPLE_INTERVAL);
     }
   }
 
@@ -90,4 +90,5 @@ implementation {
   {
     return bufPtr;
   }
+   default command error_t Read.read[uint8_t id]() { return FAIL; }
 }
