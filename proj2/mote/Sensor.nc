@@ -15,9 +15,9 @@ implementation {
   bool locked;
   uint8_t counter = 0;
   uint8_t sensor_no = 0;
-  uint8_t temp = 0;
-  uint8_t humid = 0;
-  uint8_t light = 0;
+  uint16_t temp = 0;
+  uint16_t humid = 0;
+  uint16_t light = 0;
   Entry* readings;
 
   event void Boot.booted() {
@@ -49,9 +49,9 @@ implementation {
       }
       counter++;
       rcm->param_one = counter;
-      rcm->param_two = readings->values[0];
-      rcm->param_three = readings->values[1];
-      rcm->param_four = readings->values[2];
+      rcm->param_two = temp;
+      rcm->param_three = humid;
+      rcm->param_four = light;
       if (call SerialSend.send(126, &packet, sizeof(serial_msg_t)) == SUCCESS) {
         locked = TRUE;
       }
@@ -60,14 +60,7 @@ implementation {
   }
 
   void sample_sensors(){
-    if(sensor_no < SENSORS_NO){
-      if(call Read.read[sensor_no]()){
-        call Timer.startOneShot(SAMPLE_INTERVAL);
-      }
-    }
-    else{
-      sendMessage();
-    }
+    call Read.read[0]();
   }
 
   event void Timer.fired(){
@@ -81,9 +74,22 @@ implementation {
   }
 
   event void Read.readDone[uint8_t id](error_t error, uint16_t val){
-    readings->values[sensor_no] = (error == SUCCESS) ? val : INVALID_SAMPLE_VALUE;
+    if(id == 0){
+      temp = val;
+    }
+    else if(id == 1){
+      humid = val;
+    }
+    else if(id == 2){
+      light = val;
+    }
     sensor_no++;
-    sample_sensors();
+    if(sensor_no < SENSORS_NO){
+      call Read.read[sensor_no]();
+    }
+    else{
+      sendMessage();
+    }
   }
 
   event message_t* SerialReceive.receive(message_t* bufPtr, void* payload, uint8_t len)
