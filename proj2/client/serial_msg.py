@@ -7,14 +7,14 @@
 import tinyos.message.Message
 
 # The default size of this message type in bytes.
-DEFAULT_MESSAGE_SIZE = 20
+DEFAULT_MESSAGE_SIZE = 26
 
 # The Active Message type associated with this message.
 AM_TYPE = 101
 
 class serial_msg(tinyos.message.Message.Message):
-    # Create a new serial_msg of size 20.
-    def __init__(self, data="", addr=None, gid=None, base_offset=0, data_length=20):
+    # Create a new serial_msg of size 26.
+    def __init__(self, data="", addr=None, gid=None, base_offset=0, data_length=26):
         tinyos.message.Message.Message.__init__(self, data, addr, gid, base_offset, data_length)
         self.amTypeSet(AM_TYPE)
     
@@ -47,15 +47,15 @@ class serial_msg(tinyos.message.Message.Message):
         except:
             pass
         try:
-            s += "  [param_five=0x%x]\n" % (self.get_param_five())
+            s += "  [param_five=%f]\n" % (self.get_param_five())
         except:
             pass
         try:
-            s += "  [param_six=0x%x]\n" % (self.get_param_six())
+            s += "  [param_six=%f]\n" % (self.get_param_six())
         except:
             pass
         try:
-            s += "  [param_seven=0x%x]\n" % (self.get_param_seven())
+            s += "  [param_seven=%f]\n" % (self.get_param_seven())
         except:
             pass
         try:
@@ -296,9 +296,9 @@ class serial_msg(tinyos.message.Message.Message):
     
     #
     # Accessor methods for field: param_five
-    #   Field type: int
+    #   Field type: float
     #   Offset (bits): 64
-    #   Size (bits): 16
+    #   Size (bits): 32
     #
 
     #
@@ -326,34 +326,34 @@ class serial_msg(tinyos.message.Message.Message):
         return 64
     
     #
-    # Return the value (as a int) of the field 'param_five'
+    # Return the value (as a float) of the field 'param_five'
     #
     def get_param_five(self):
-        return self.getUIntElement(self.offsetBits_param_five(), 16, 1)
+        return self.getFloatElement(self.offsetBits_param_five(), 32, 0)
     
     #
     # Set the value of the field 'param_five'
     #
     def set_param_five(self, value):
-        self.setUIntElement(self.offsetBits_param_five(), 16, value, 1)
+        self.setFloatElement(self.offsetBits_param_five(), 32, value, 0)
     
     #
     # Return the size, in bytes, of the field 'param_five'
     #
     def size_param_five(self):
-        return (16 / 8)
+        return (32 / 8)
     
     #
     # Return the size, in bits, of the field 'param_five'
     #
     def sizeBits_param_five(self):
-        return 16
+        return 32
     
     #
     # Accessor methods for field: param_six
-    #   Field type: int
-    #   Offset (bits): 80
-    #   Size (bits): 16
+    #   Field type: float
+    #   Offset (bits): 96
+    #   Size (bits): 32
     #
 
     #
@@ -372,43 +372,43 @@ class serial_msg(tinyos.message.Message.Message):
     # Return the offset (in bytes) of the field 'param_six'
     #
     def offset_param_six(self):
-        return (80 / 8)
+        return (96 / 8)
     
     #
     # Return the offset (in bits) of the field 'param_six'
     #
     def offsetBits_param_six(self):
-        return 80
+        return 96
     
     #
-    # Return the value (as a int) of the field 'param_six'
+    # Return the value (as a float) of the field 'param_six'
     #
     def get_param_six(self):
-        return self.getUIntElement(self.offsetBits_param_six(), 16, 1)
+        return self.getFloatElement(self.offsetBits_param_six(), 32, 0)
     
     #
     # Set the value of the field 'param_six'
     #
     def set_param_six(self, value):
-        self.setUIntElement(self.offsetBits_param_six(), 16, value, 1)
+        self.setFloatElement(self.offsetBits_param_six(), 32, value, 0)
     
     #
     # Return the size, in bytes, of the field 'param_six'
     #
     def size_param_six(self):
-        return (16 / 8)
+        return (32 / 8)
     
     #
     # Return the size, in bits, of the field 'param_six'
     #
     def sizeBits_param_six(self):
-        return 16
+        return 32
     
     #
     # Accessor methods for field: param_seven
-    #   Field type: int
-    #   Offset (bits): 96
-    #   Size (bits): 16
+    #   Field type: float
+    #   Offset (bits): 128
+    #   Size (bits): 32
     #
 
     #
@@ -427,42 +427,42 @@ class serial_msg(tinyos.message.Message.Message):
     # Return the offset (in bytes) of the field 'param_seven'
     #
     def offset_param_seven(self):
-        return (96 / 8)
+        return (128 / 8)
     
     #
     # Return the offset (in bits) of the field 'param_seven'
     #
     def offsetBits_param_seven(self):
-        return 96
+        return 128
     
     #
-    # Return the value (as a int) of the field 'param_seven'
+    # Return the value (as a float) of the field 'param_seven'
     #
     def get_param_seven(self):
-        return self.getUIntElement(self.offsetBits_param_seven(), 16, 1)
+        return self.getFloatElement(self.offsetBits_param_seven(), 32, 0)
     
     #
     # Set the value of the field 'param_seven'
     #
     def set_param_seven(self, value):
-        self.setUIntElement(self.offsetBits_param_seven(), 16, value, 1)
+        self.setFloatElement(self.offsetBits_param_seven(), 32, value, 0)
     
     #
     # Return the size, in bytes, of the field 'param_seven'
     #
     def size_param_seven(self):
-        return (16 / 8)
+        return (32 / 8)
     
     #
     # Return the size, in bits, of the field 'param_seven'
     #
     def sizeBits_param_seven(self):
-        return 16
+        return 32
     
     #
     # Accessor methods for field: param_eight
     #   Field type: int
-    #   Offset (bits): 112
+    #   Offset (bits): 160
     #   Size (bits): 16
     #
 
@@ -482,13 +482,13 @@ class serial_msg(tinyos.message.Message.Message):
     # Return the offset (in bytes) of the field 'param_eight'
     #
     def offset_param_eight(self):
-        return (112 / 8)
+        return (160 / 8)
     
     #
     # Return the offset (in bits) of the field 'param_eight'
     #
     def offsetBits_param_eight(self):
-        return 112
+        return 160
     
     #
     # Return the value (as a int) of the field 'param_eight'
@@ -517,7 +517,7 @@ class serial_msg(tinyos.message.Message.Message):
     #
     # Accessor methods for field: param_nine
     #   Field type: int
-    #   Offset (bits): 128
+    #   Offset (bits): 176
     #   Size (bits): 16
     #
 
@@ -537,13 +537,13 @@ class serial_msg(tinyos.message.Message.Message):
     # Return the offset (in bytes) of the field 'param_nine'
     #
     def offset_param_nine(self):
-        return (128 / 8)
+        return (176 / 8)
     
     #
     # Return the offset (in bits) of the field 'param_nine'
     #
     def offsetBits_param_nine(self):
-        return 128
+        return 176
     
     #
     # Return the value (as a int) of the field 'param_nine'
@@ -572,7 +572,7 @@ class serial_msg(tinyos.message.Message.Message):
     #
     # Accessor methods for field: param_ten
     #   Field type: int
-    #   Offset (bits): 144
+    #   Offset (bits): 192
     #   Size (bits): 16
     #
 
@@ -592,13 +592,13 @@ class serial_msg(tinyos.message.Message.Message):
     # Return the offset (in bytes) of the field 'param_ten'
     #
     def offset_param_ten(self):
-        return (144 / 8)
+        return (192 / 8)
     
     #
     # Return the offset (in bits) of the field 'param_ten'
     #
     def offsetBits_param_ten(self):
-        return 144
+        return 192
     
     #
     # Return the value (as a int) of the field 'param_ten'

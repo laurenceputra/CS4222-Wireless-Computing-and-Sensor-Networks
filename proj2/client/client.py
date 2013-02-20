@@ -49,16 +49,12 @@ class serial():
     param_9 = m.get_param_nine()
     param_10 = m.get_param_ten()
     print "Packet No Received: ", param_1
-    temp = -39.60 + 0.01 * param_2
     print "Raw Temp :", param_2
-    print "Temp :", temp
-    humidity = -4 + 0.0405 * param_3 + (-2.8 * math.pow(10, -6))*(math.pow(param_3, 2))
-    humidity_true = (temp -25) * (0.01 + 0.00008 * param_3) + humidity
+    print "Temp :", param_5
     print "Raw Humidity :", param_3
-    print "Humidity :", humidity_true
-    lux = 0.769 * math.pow(10, 5) * param_4 / 100
+    print "Humidity :", param_6
     print "Raw Brightness :", param_4
-    print "Brightness :", lux
+    print "Brightness :", param_7
 
 if __name__=='__main__':
  main(*sys.argv)
