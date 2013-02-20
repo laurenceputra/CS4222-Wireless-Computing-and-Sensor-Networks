@@ -52,6 +52,9 @@ implementation {
       rcm->param_two = temp;
       rcm->param_three = humid;
       rcm->param_four = light;
+      rcm->param_five = -39.6 + (0.01 * temp);
+      rcm->param_six = (rcm->param_five - 25) * (0.01 + 0.00008 * humid) -4 + (0.0405 * humid) + (-0.0000028 * humid * humid);
+      rcm->param_seven = 0.28161 * light;
       if (call SerialSend.send(126, &packet, sizeof(serial_msg_t)) == SUCCESS) {
         locked = TRUE;
       }
