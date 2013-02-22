@@ -2,16 +2,13 @@
 #define SERIAL_MSG
 
 typedef nx_struct serial_msg {
-  nx_uint16_t param_one;
-  nx_uint16_t param_two;
-  nx_uint16_t param_three;
-  nx_uint16_t param_four;
-  nx_float param_five;
-  nx_float param_six;
-  nx_float param_seven;
-  nx_uint16_t param_eight;
-  nx_uint16_t param_nine;
-  nx_uint16_t param_ten;
+  nx_uint16_t counter;
+  nx_uint16_t raw_temp;
+  nx_uint16_t raw_humid;
+  nx_uint16_t raw_light;
+  nx_float temp;
+  nx_float humid;
+  nx_float light;
 }serial_msg_t;
 
 enum {

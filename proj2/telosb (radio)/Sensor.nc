@@ -78,7 +78,7 @@ implementation {
         return;
       }
       counterRadio++;
-      radiomsg->param_one = counter;
+      radiomsg->param_one = counterRadio;
       radiomsg->param_two = real_temp;
       radiomsg->param_three = real_humid;
       radiomsg->param_four = real_light;
@@ -102,13 +102,13 @@ implementation {
       real_humid = (real_temp - 25) * (0.01 + 0.00008 * humid) -4 + (0.0405 * humid) + (-0.0000028 * humid * humid);
       real_light = 0.28161 * light;
 
-      rcm->param_one = counter;
-      rcm->param_two = temp;
-      rcm->param_three = humid;
-      rcm->param_four = light;
-      rcm->param_five = real_temp;
-      rcm->param_six = real_humid;
-      rcm->param_seven = real_light;
+      rcm->counter = counter;
+      rcm->raw_temp = temp;
+      rcm->raw_humid = humid;
+      rcm->raw_light = light;
+      rcm->temp = real_temp;
+      rcm->humid = real_humid;
+      rcm->light = real_light;
       if (call SerialSend.send(126, &sPacket, sizeof(serial_msg_t)) == SUCCESS) {
         locked = TRUE;
       }
@@ -123,6 +123,9 @@ implementation {
     if(serialReady && radioReady){
       sensor_no = 0;
       sample_sensors();
+    }
+    else{
+      call Timer.startOneShot(SAMPLE_INTERVAL);
     }
   }
 
