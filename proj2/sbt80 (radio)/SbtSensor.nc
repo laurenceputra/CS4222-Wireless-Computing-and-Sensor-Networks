@@ -113,7 +113,7 @@ implementation {
   }
 
   event void Light.readDone(error_t result, uint16_t val){
-    rcm->sbt_light = (val * 2.5/4096);
+    rcm->sbt_light = (val / 4096) * 1000;
     call Temp.read();
   }
 
