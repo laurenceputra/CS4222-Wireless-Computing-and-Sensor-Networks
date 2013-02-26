@@ -99,7 +99,7 @@ implementation {
       }
       counter++;
       real_temp = -39.6 + (0.01 * temp);
-      real_humid = (real_temp - 25) * (0.01 + 0.00008 * humid) -4 + (0.0405 * humid) + (-0.0000028 * humid * humid);
+      real_humid = (real_temp - 25) * (0.01 + 0.00008 * humid) -2.0468 + (0.0367 * humid) + (-0.0000015955 * humid * humid);
       real_light = 0.28161 * light;
 
       rcm->counter = counter;
